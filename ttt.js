@@ -1,9 +1,9 @@
 let xCells = [{
     cell1: true,
-    cell2: true,
+    cell2: false,
     cell3: true,
-    cell4: false,
-    cell5: false,
+    cell4: true,
+    cell5: true,
     cell6: false,
     cell7: false,
     cell8: false,
@@ -34,49 +34,62 @@ let playedCells = [{
     cell9: 'played'
 }];
 
-const yCheck = function () {
-    for (let index = 0; index < xCells.length; index++) {
-        if ((xCells[0].cell1 && xCells[0].cell2 && xCells[0].cell3) ||
-            (xCells[0].cell1 && xCells[0].cell4 && xCells[0].cell7) ||
-            (xCells[0].cell1 && xCells[0].cell5 && xCells[0].cell9) ||
-            (xCells[0].cell2 && xCells[0].cell5 && xCells[0].cell8) ||
-            (xCells[0].cell3 && xCells[0].cell5 && xCells[0].cell7) ||
-            (xCells[0].cell3 && xCells[0].cell6 && xCells[0].cell9) ||
-            (xCells[0].cell4 && xCells[0].cell5 && xCells[0].cell6) ||
-            (xCells[0].cell7 && xCells[0].cell8 && xCells[0].cell9)
+
+let xOrYCells = xCells; //here I get the lastes input x or o
+
+
+const cellsCheck = function () {
+    for (let index = 0; index < xOrYCells.length; index++) {
+        if ((xOrYCells[0].cell1 && xOrYCells[0].cell2 && xOrYCells[0].cell3) ||
+            (xOrYCells[0].cell1 && xOrYCells[0].cell4 && xOrYCells[0].cell7) ||
+            (xOrYCells[0].cell1 && xOrYCells[0].cell5 && xOrYCells[0].cell9) ||
+            (xOrYCells[0].cell2 && xOrYCells[0].cell5 && xOrYCells[0].cell8) ||
+            (xOrYCells[0].cell3 && xOrYCells[0].cell5 && xOrYCells[0].cell7) ||
+            (xOrYCells[0].cell3 && xOrYCells[0].cell6 && xOrYCells[0].cell9) ||
+            (xOrYCells[0].cell4 && xOrYCells[0].cell5 && xOrYCells[0].cell6) ||
+            (xOrYCells[0].cell7 && xOrYCells[0].cell8 && xOrYCells[0].cell9)
         ) {
-            console.log(`Y is the winner`);
+            console.log(`${xOrYCells[0]} is the winner`);
+        }
+        else {
+            tie();
         }
     }
 };
 
-const xCheck = function () {
-    for (let index = 0; index < xCells.length; index++) {
-        if ((xCells[0].cell1 && xCells[0].cell2 && xCells[0].cell3) ||
-            (xCells[0].cell1 && xCells[0].cell4 && xCells[0].cell7) ||
-            (xCells[0].cell1 && xCells[0].cell5 && xCells[0].cell9) ||
-            (xCells[0].cell2 && xCells[0].cell5 && xCells[0].cell8) ||
-            (xCells[0].cell3 && xCells[0].cell5 && xCells[0].cell7) ||
-            (xCells[0].cell3 && xCells[0].cell6 && xCells[0].cell9) ||
-            (xCells[0].cell4 && xCells[0].cell5 && xCells[0].cell6) ||
-            (xCells[0].cell7 && xCells[0].cell8 && xCells[0].cell9)
-        ) {
-            console.log(`X is the winner`);
-        }
-    }
-};
+
 
 const tie = function () {
     for (let index = 0; index < xCells.length; index++) {
         if (index === 'unplayed') {
-           break;
+            break;
         } else {
             console.log(`It is a tie!`)
         }
-}
+    }
 };
 
 
-  yCheck();
-  xCheck();
-  tie();
+cellsCheck();
+
+$(document).ready(function () {
+
+$('.cell1').click(function(event){  
+    // $('body').keypress(function(event) {
+            let insertLetter = event.key;
+            $('.cell1').html(insertLetter);
+          });
+        // });  
+
+    // $('body').keypress(function(event) {
+    //     let insertLetter = event.key;
+    //     $('#letter').html(insertLetter);
+    //   });
+
+
+    // 	$("p").css("background-color", "pink");  
+    //   $('h1').css('color', 'red');
+    //   $('#subHeader').css('font-size', '24px');
+    //   $('#para').css("border","1px solid black");
+
+});  
