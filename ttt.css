@@ -1,42 +1,40 @@
+body {
+    font-family: 'Knewave', cursive;
+    font-size: 40px;
+    color: darkmagenta;
+}
+
+.container {
+    padding: auto;
+    display: block;
+    margin: 80px auto;
+    max-width: 350px;
+    text-align: center
+}
+
 td {
-    padding: 20px;
+    padding: 30px;
     margin: 0;
 }
 
-.cell1 {
-    border-bottom: 5px solid navy;
-    border-right: 5px solid navy;
+.cell1, .cell2 {
+    border-bottom: 5px solid lightgrey;
+    border-right: 5px solid lightgrey;
 }
 
-.cell2 {
-    border-bottom: 5px solid navy;
-    border-right: 5px solid navy;
+.cell3, .cell6 {
+    border-bottom: 5px solid lightgrey;
 }
 
-.cell3 {
-    border-bottom: 5px solid navy;
+.cell4, .cell5 {
+    border-bottom: 5px solid lightgrey;
+    border-right: 5px solid lightgrey;
 }
 
-.cell4 {
-    border-bottom: 5px solid navy;
-    border-right: 5px solid navy;
+.cell7, .cell8 {
+    border-right: 5px solid lightgrey;
 }
-
-.cell5 {
-    border-bottom: 5px solid navy;
-    border-right: 5px solid navy;
+td:hover {
+    border-color: aqua;
+    background-color: azure;
 }
-
-.cell6 {
-    border-bottom: 5px solid navy;
-}
-.cell7 {
-    border-right: 5px solid navy;
-}
-
-.cell8 {
-    border-right: 5px solid navy;
-}
-
-/* .cell9 {
-} */
