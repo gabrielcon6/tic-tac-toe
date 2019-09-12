@@ -88,7 +88,7 @@ let oCells = [{
 }
 ];
 
-const checkingXCellsValues = function () {
+const checkXCellsValues = function () {
     for (let i = 0; i < xCells.length; i++) {
         if (thisIndex == i) {
             xCells[i].cellElement = true;
@@ -97,7 +97,7 @@ const checkingXCellsValues = function () {
     }
 };
 
-const checkingOCellsValues = function () {
+const checkOCellsValues = function () {
     for (let i = 0; i < oCells.length; i++) {
         if (thisIndex == i) {
             oCells[i].cellElement = true;
@@ -140,11 +140,11 @@ const xOrOPrint = function () {
     if (turnsCount % 2 == 0) {
         cellTurn.html("X").hide().fadeIn().fadeIn('slow').fadeIn(9000);
         turnsCount++;
-        checkingXCellsValues();
+        checkXCellsValues();
     } else if (turnsCount % 2 !== 0) {
         cellTurn.html("O").hide().fadeIn().fadeIn('slow').fadeIn(9000);
         turnsCount++;
-        checkingOCellsValues();
+        checkOCellsValues();
     }
 };
 
