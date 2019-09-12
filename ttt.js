@@ -2,17 +2,34 @@ let turnsCount = 0;
 let cellTurn;
 let thisIndex;
 
-let cellsLocation = {
-    cell1Location: $('.cell1'),
-    cell2Location: $('.cell2'),
-    cell3Location: $('.cell3'),
-    cell4Location: $('.cell4'),
-    cell5Location: $('.cell5'),
-    cell6Location: $('.cell6'),
-    cell7Location: $('.cell7'),
-    cell8Location: $('.cell8'),
-    cell9Location: $('.cell9')
-};
+let cellLocations = [{
+    cellLocation: $('.cell1')
+},
+{
+    cellLocation: $('.cell2')
+},
+{
+    cellLocation: $('.cell3')
+},
+{
+    cellLocation: $('.cell4')
+},
+{
+    cellLocation: $('.cell5')
+},
+{
+    cellLocation: $('.cell6')
+},
+{
+    cellLocation: $('.cell7')
+},
+{
+    cellLocation: $('.cell8')
+},
+{
+    cellLocation: $('.cell9')
+}
+];
 
 let xCells = [{
     cellElement: false
@@ -100,38 +117,57 @@ const winnerCheck = function (value, winner) {
         (value[6].cellElement && value[7].cellElement && value[8].cellElement)
     ) {
         alert(`${winner} is the winner`);
-        resetTrueOrFalse();
+        resetCells();
+    } else if (turnsCount > 8) {
+        alert(`It's a draw!`);
+        resetCells();
     }
 };
 
-const resetTrueOrFalse = function () {
+const resetCells = function () {
     for (let i = 0; i < xCells.length; i++) {
         xCells[i].cellElement = false;
     } for (let i = 0; i < oCells.length; i++) {
         oCells[i].cellElement = false;
-    } 
+    } for (let i = 0; i < cellLocations.length; i++) {
+        cellLocations[i].cellLocation.text('');
+    }
+    turnsCount = 0;
+    startingGame();
 }
 
 const xOrOPrint = function () {
     if (turnsCount % 2 == 0) {
-        cellTurn.text('X');
+        cellTurn.html("X").hide().fadeIn().fadeIn('slow').fadeIn(9000);
         turnsCount++;
         checkingXCellsValues();
     } else if (turnsCount % 2 !== 0) {
-        cellTurn.text('O');
+        cellTurn.html("O").hide().fadeIn().fadeIn('slow').fadeIn(9000);
         turnsCount++;
         checkingOCellsValues();
-    } else if (turnsCount === 8) {
-        alert(`DRAW!`);
     }
 };
 
-$(document).ready(function () {
-
+const startingGame = function () {
     $('.cell').one('click', function () {
         cellTurn = $(this);
         thisIndex = $(this).attr("data-id");
         xOrOPrint();
     })
+};
 
-});  
+const startGameButton = function () {
+    $('a').hide();
+    $('a').slideDown('slow');
+    startingGame();
+}
+
+$(document).ready(startGameButton);
+
+
+//todo
+//make it responsive
+//create modal for the winner
+// add a crossing line when someone wins?
+// when I play the second time one character still appears
+// check why live server does not work outside of those directories

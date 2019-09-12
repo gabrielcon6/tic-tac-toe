@@ -1,42 +1,112 @@
 body {
-    font-family: 'Knewave', cursive;
-    font-size: 40px;
+    font-family: 'Indie Flower', cursive;
+    font-size: 60px;
+    font-weight: bold;
     color: darkmagenta;
+    background-color: #CCE5F9;
 }
 
 .container {
     padding: auto;
+    /* display: flex; */
+    justify-content: center;
+    margin: 50px 400px;
+    text-align: center;
+    background-color: white;
+    border-radius: 30px;
+}
+h1 {
+    font-family: 'Indie Flower', cursive;
+    margin-bottom: -30px;
+    padding-top: 30px;
+}
+a {
+    font-family: 'Dosis', sans-serif;
+    font-size: 24px;
+    color: darkblue;
+    border: 1px solid rgba(75, 127, 248, 0.4);
+    border-radius: 12px;
+    padding: 10px;
+    text-decoration: none;
+}
+a:hover {
+    font-size: 26px;
+    box-shadow: 3px 10px rgba(163, 205, 241, 0.849);
+    text-shadow: 2px 2px rgba(163, 205, 241, 0.849);
+}
+.container2 {
+    padding: auto;
     display: flex;
     justify-content: center;
-    margin: 50px 0;
-    text-align: center
+    margin: 50px 400px;
+    text-align: center;
+    background-color: white;
+    border-radius: 30px;
 }
-
 td {
     padding: 30px;
-    margin: 0;
-    width: 100px;
-    height: 100px;
+    margin: 25px;
+    width: 120px;
+    height: 120px;
 }
 
-.cell1, .cell2 {
-    border-bottom: 5px solid lightgrey;
-    border-right: 5px solid lightgrey;
+.cell1{
+    border-bottom: 8px solid rgba(75, 127, 248, 1);
+    border-right: 8px solid rgba(75, 127, 248, 1);
+    border-radius: 8px;
 }
 
-.cell3, .cell6 {
-    border-bottom: 5px solid lightgrey;
+.cell2{
+    border-bottom: 8px solid rgba(75, 127, 248, 0.7);
+    border-right: 8px solid rgba(75, 127, 248, 0.4);
+    border-radius: 8px;
+
 }
 
-.cell4, .cell5 {
-    border-bottom: 5px solid lightgrey;
-    border-right: 5px solid lightgrey;
+.cell3{
+    border-bottom: 8px solid rgba(75, 127, 248, 0.3);
+    border-radius: 8px;
+
 }
 
-.cell7, .cell8 {
-    border-right: 5px solid lightgrey;
+.cell4 {
+    border-bottom: 8px solid rgba(75, 127, 248, 1);
+    border-right: 8px solid rgba(75, 127, 248, 0.7);
+    border-radius: 8px;
+
+}
+.cell5 {
+    border-bottom: 8px solid rgba(75, 127, 248, 0.7);
+    border-right: 8px solid rgba(75, 127, 248, 0.4);
+    border-radius: 8px;
+
+}
+.cell6 {
+    border-bottom: 8px solid rgba(75, 127, 248, 0.3);
+    border-radius: 8px;
+
+} 
+
+.cell7{
+    border-right: 8px solid rgba(75, 127, 248, 0.3);
+    border-radius: 8px;
+
+}
+.cell8 {
+    border-right: 8px solid rgba(75, 127, 248, 0.3);
+    border-radius: 8px;
 }
 td:hover {
-    border-color: aqua;
-    background-color: azure;
+    border-color: rgb(47, 43, 255);
+    animation: pulse 2s infinite;
+    /* background-color: rgb(154, 165, 165); */
 }
+
+@keyframes pulse {
+    0% {
+    border-color: aliceblue;
+    }
+    100% {
+    border-color: hsl(246, 100%, 42%);
+    }
+  }
