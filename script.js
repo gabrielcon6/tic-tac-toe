@@ -68,18 +68,23 @@ const updatingScoreboard = function (winnerCells, addedScoreCell, subsScoreCell,
 const winnerPage = function (winner) {
     if (xPoints >= 10 || oPoints >= 10) {
         $('.container3').slideDown();
+        $('#winner').show();
         $('#winner').text(`"${winner}" wins!`);
         $('.crown').show();
         $('.continue').hide();
         $('.play-again').fadeIn();
     }  else if (xPoints >= 10 && oPoints >= 10) {
         $('.container3').slideDown();
+        $('#winner').show();
         $('#winner').text(`"Everyone is a Winner!`);
         $('.crown').show();
         $('.continue').hide();
         $('.play-again').fadeIn();
     }  else {
         $('.play-again').hide();
+        $('#winner').hide();
+        $('.continue').show();
+        $('.quit').show();
         $('.container3').slideDown();
         $('.crown').hide();
         playAgain();
@@ -193,7 +198,7 @@ const startingGame = function () {
 };
 
 const startGameButton = function () {
-    $('.start').on('click', function () {
+    $('.start-button').on('click', function () {
         $('.container').hide();
         $('.container2').slideDown('slow');
         startingGame();
@@ -220,9 +225,11 @@ $(document).ready(settingUpPages);
 //make it responsive
 //learn how to creat modals
 // add a strike through line when someone wins?
-// check why live server does not work outside of those directories
 
 //ask aaron for help with read.me
 
 //x always starts - how to solve
 //make the transitioon to winner window a bit smother
+
+// bugs-
+//when I click on play again, after the first round, it shows the winner already, even before getting to 10
