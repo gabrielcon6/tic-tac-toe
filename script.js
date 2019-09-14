@@ -1,3 +1,4 @@
+// debugger;
 let turnsCount = 0;
 let cellTurn;
 let thisIndex;
@@ -6,38 +7,95 @@ let xCells = [false, false, false, false, false, false, false, false, false];
 let oCells = [false, false, false, false, false, false, false, false, false];
 let xPoints = 0;
 let oPoints = 0;
-let counts;
 
-const updatingScoreboard = function (winnerCells, addedScoreCell, subsScoreCell, addPoints, subsPoints) {
-    counts = {};
+//I will make this function DRY again - stay tuned
+const updatingScoreboard = function (winnerCells, addedScoreCell, subsScoreCell, winner) {
+    let counts = {};
+    let addPoints = 0;
+    let subsPoints = 0;
     winnerCells.forEach(function (y) { counts[y] = (counts[y] || 0) + 1; });
     if (counts.true == 3) {
-        addPoints += 4;
-        subsPoints -= 2;
+        addPoints = 4;
+        subsPoints = 2;
+        if (winner === 'X') {
+            xPoints += addPoints;
+            oPoints -= subsPoints;
+            addedScoreCell.html(xPoints);
+            subsScoreCell.html(oPoints);
+            winnerPage('X');
+        }
+        else if (winner === 'O') {
+            oPoints += addPoints;
+            xPoints -= subsPoints;
+            addedScoreCell.html(oPoints);
+            subsScoreCell.html(xPoints);
+            winnerPage('O');
+        }
     } else if (counts.true == 4) {
-        addPoints += 3;
-        subsPoints -= 1;
+        addPoints = 3;
+        subsPoints = 1;
+        if (winner === 'X') {
+            xPoints += addPoints;
+            oPoints -= subsPoints;
+            addedScoreCell.html(xPoints);
+            subsScoreCell.html(oPoints);
+            winnerPage('X');
+
+        }
+        else if (winner === 'O') {
+            oPoints += addPoints;
+            xPoints -= subsPoints;
+            addedScoreCell.html(oPoints);
+            subsScoreCell.html(xPoints);
+            winnerPage('O');
+
+        }
     } else if (counts.true == 5) {
-        addPoints += 2;
+        addPoints = 2;
+        if (winner === 'X') {
+            xPoints += addPoints;
+            addedScoreCell.html(xPoints);
+            winnerPage('X');
+        }
+        else if (winner === 'O') {
+            oPoints += addPoints;
+            addedScoreCell.html(oPoints);
+            winnerPage('O');
+        }
     }
-    addedScoreCell.html(addPoints);
-    subsScoreCell.html(subsPoints);
-    playAgain();
+};
+
+const winnerPage = function (winner) {
+    if (xPoints >= 10 || oPoints >= 10) {
+        $('.container3').slideDown();
+        $('#winner').text(`"${winner}" wins!`);
+        $('.crown').show();
+        $('.continue').hide();
+        $('.play-again').fadeIn();
+    }  else if (xPoints >= 10 && oPoints >= 10) {
+        $('.container3').slideDown();
+        $('#winner').text(`"Everyone is a Winner!`);
+        $('.crown').hide();
+        $('.continue').hide();
+        $('.play-again').fadeIn();
+    }  else {
+        $('.play-again').hide();
+        $('.container3').slideDown();
+        $('.crown').hide();
+        playAgain();
+    }
 }
 
-const winnerCheck = function (value, winner) {
-    if ((value[0] && value[1] && value[2]) || (value[0] && value[3] && value[6]) ||
-        (value[0] && value[4] && value[8]) || (value[1] && value[4] && value[7]) ||
-        (value[2] && value[4] && value[6]) || (value[2] && value[5] && value[8]) ||
-        (value[3] && value[4] && value[5]) || (value[6] && value[7] && value[8])
+const winnerCheck = function (winCell, winner) {
+    if ((winCell[0] && winCell[1] && winCell[2]) || (winCell[0] && winCell[3] && winCell[6]) ||
+        (winCell[0] && winCell[4] && winCell[8]) || (winCell[1] && winCell[4] && winCell[7]) ||
+        (winCell[2] && winCell[4] && winCell[6]) || (winCell[2] && winCell[5] && winCell[8]) ||
+        (winCell[3] && winCell[4] && winCell[5]) || (winCell[6] && winCell[7] && winCell[8])
     ) {
-        $('#winner').text(`"${winner}" wins!`);
-        $('.container').hide();
-        $('.container3').slideDown();
         if (winner == 'X') {
-            updatingScoreboard(xCells, $('#xScore'), $('#oScore'), xPoints, oPoints);
+            updatingScoreboard(xCells, $('#xScore'), $('#oScore'), 'X');
         } else if (winner == 'O') {
-            updatingScoreboard(oCells, $('#oScore'), $('#xScore'), oPoints, xPoints)
+            updatingScoreboard(oCells, $('#oScore'), $('#xScore'), 'O');
         }
 
     } else if (turnsCount > 8) { //maybe create a tie function first turn turnscount = 0 and then it equals 1
@@ -49,7 +107,7 @@ const winnerCheck = function (value, winner) {
         $('#xScore').html(xPoints);
         oPoints++;
         $('#oScore').html(oPoints);
-        playAgain();
+        winnerPage();
     }
 };
 
@@ -100,16 +158,28 @@ const resetCells = function () {
     startingGame();
 }
 const playAgain = function () {
-    $('.play-again').on('click', function () {
-        $('.container').hide();
+    $('.continue').on('click', function () {
         $('.container3').hide();
         $('.container2').slideDown('slow');
+        resetCells();
+    });
+    $('.play-again').on('click', function () {
+        $('.container3').hide();
+        $('.container2').slideDown('slow');
+        xPoints = 0;
+        $('#xScore').html(xPoints);
+        oPoints = 0;
+        $('#oScore').html(oPoints);
         resetCells();
     });
     $('.quit').on('click', function () {
         $('.container2').hide();
         $('.container3').hide();
         $('.container').slideDown('slow');
+        xPoints = 0;
+        $('#xScore').html(xPoints);
+        oPoints = 0;
+        $('#oScore').html(oPoints);
         resetCells();
     })
 };
@@ -126,13 +196,11 @@ const startGameButton = function () {
     $('.start').on('click', function () {
         $('.container').hide();
         $('.container2').slideDown('slow');
-        // $('#scoreboard').addClass('animated bounceInDown delay-0.7s');
         startingGame();
     }
     )
     $('#scoreboard').on('click', function () {
-        $('.scoreToggle').toggle();
-        // $('.scoreToggle').slideDown('slow');
+        $('.scoreToggle').fadeToggle();
     }
     )
 }
@@ -161,3 +229,4 @@ $(document).ready(settingUpPages);
 //Scores hide
 //show them instead of wins
 // when it gets to 10 someone wins
+//make the transitioon to winner window a bit smother

@@ -110,7 +110,9 @@ td:hover {
   }
 #winner {
     color: #f1c40f;
-    font-size: 60px;
+    font-size: 50px;
+    margin: 0;
+    padding: 0;
 }
 .fas{
     color: #f1c40f;
@@ -131,3 +133,9 @@ section {
 #xScore, #oScore {
     color: #f1c40f;
 }
+
+@media screen and (max-width: 450px) {
+    body {
+      width: 100%;
+    }
+   }
