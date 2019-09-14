@@ -2,10 +2,9 @@ body {
     font-family: 'Indie Flower', cursive;
     font-size: 60px;
     font-weight: bold;
-    color: darkmagenta;
+    color:#3498db;
     background-color: #f1c40f;
 }
-
 .container {
     padding: auto;
     /* display: flex; */
@@ -33,7 +32,6 @@ a {
 a:hover {
     font-size: 26px;
     box-shadow: 3px 10px rgba(163, 205, 241, 0.849);
-    text-shadow: 1.5px 1.5px rgba(163, 205, 241, 0.849);
 }
 .container2 {
     padding: auto;
@@ -102,7 +100,6 @@ td:hover {
     animation: pulse 2s infinite;
     /* background-color: rgb(154, 165, 165); */
 }
-
 @keyframes pulse {
     0% {
     border-color: aliceblue;
@@ -111,3 +108,26 @@ td:hover {
     border-color: hsl(246, 100%, 42%);
     }
   }
+#winner {
+    color: #f1c40f;
+    font-size: 60px;
+}
+.fas{
+    color: #f1c40f;
+    font-size: 70px;
+}
+.pointer, #scoreboard {
+    cursor: pointer;
+}
+#scoreboard {
+    font-size: 36px;
+}
+
+section {
+    color: #3498db;
+    font-size: 20px;
+    /* display: inline-block; */
+}
+#xScore, #oScore {
+    color: #f1c40f;
+}

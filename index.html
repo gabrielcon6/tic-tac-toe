@@ -4,25 +4,86 @@
 <head>
     <meta charset="UTF-8">
     <title>Tic Tac Toe</title>
+    <link rel="icon"
+        href="https://4.bp.blogspot.com/-lGSb88unsuw/V5qMDlPHigI/AAAAAAAAYMY/cs_PNUsj8RQBMGBs2SFbUiv_A5E2lMZZwCLcB/s1600/jogo-da-velha.png">
     <link href="https://fonts.googleapis.com/css?family=Dosis|Indie+Flower&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="ttt.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 </head>
 
 <body>
-
     <div class="container">
         <div class="animated rubberBand delay-0.7s">
             <h1>X || O</h1>
         </div>
-        <!-- <div class="animated bounce delay-0.7s"> -->
+        <a class="button pointer start">start game</a>
+    </div>
 
-        <a href="index2.html" class="button">Start Game</a>
-        <!-- </div> -->
+    <div class="container2">
+        <div class="animated bounceInDown delay-0.7s">
+            <section>
+                <p>
+                    <span class="scoreToggle">X:&nbsp;&nbsp;<span id="xScore">0</span></span>
+                    <span>&nbsp;&nbsp;&nbsp;<i id="scoreboard" class="fas fa-crown">&nbsp;&nbsp;&nbsp;</i></span>
+                    <span class="scoreToggle">O:&nbsp;&nbsp;<span id="oScore">0</span></span>
+                    </span>
+                </p>
+            </section>
+            <table>
+                <tr>
+                    <div>
+                        <td data-id="0" class="cell cell1"> </td>
+                    </div>
+                    <div>
+                        <td data-id="1" class="cell cell2"> </td>
+                    </div>
+                    <div>
+                        <td data-id="2" class="cell cell3"> </td>
+                    </div>
+                </tr>
+                <tr>
 
-        <script src="https://code.jquery.com/jquery-3.4.1.js"
-            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-        <script src="ttt.js"></script>
+                    <div>
+                        <td data-id="3" class="cell cell4"> </td>
+                    </div>
+                    <div>
+                        <td data-id="4" class="cell cell5"> </td>
+                    </div>
+                    <div>
+                        <td data-id="5" class="cell cell6"> </td>
+                    </div>
+                </tr>
+                <tr>
+                    <div>
+                        <td data-id="6" class="cell cell7"> </td>
+                    </div>
+                    <div>
+                        <td data-id="7" class="cell cell8"> </td>
+                    </div>
+                    <div>
+                        <td data-id="8" class="cell cell9"> </td>
+                    </div>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="container3">
+            <p id="winner" class="animated infinite swing delay-0.7s"> </p>
+            <p>
+                <div class="crown"><i class="fas fa-crown"></i>
+            </p>
+        </div>
+        <div class="animated rubberBand delay-0.7s">
+            <a class="button pointer play-again">play again</a><br>
+            <a class="button pointer quit">quit</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 
     </div>
 </body>
