@@ -75,7 +75,7 @@ const winnerPage = function (winner) {
     }  else if (xPoints >= 10 && oPoints >= 10) {
         $('.container3').slideDown();
         $('#winner').text(`"Everyone is a Winner!`);
-        $('.crown').hide();
+        $('.crown').show();
         $('.continue').hide();
         $('.play-again').fadeIn();
     }  else {
@@ -98,11 +98,11 @@ const winnerCheck = function (winCell, winner) {
             updatingScoreboard(oCells, $('#oScore'), $('#xScore'), 'O');
         }
 
-    } else if (turnsCount > 8) { //maybe create a tie function first turn turnscount = 0 and then it equals 1
+    } else if (turnsCount > 8) { 
         $('#winner').text(`it's a draw!`);
-        $('.container').hide();
         $('.container3').slideDown();
         $('.crown').hide();
+        $('.continue').show();
         xPoints++;
         $('#xScore').html(xPoints);
         oPoints++;
@@ -224,9 +224,5 @@ $(document).ready(settingUpPages);
 
 //ask aaron for help with read.me
 
-//check points system
 //x always starts - how to solve
-//Scores hide
-//show them instead of wins
-// when it gets to 10 someone wins
 //make the transitioon to winner window a bit smother
