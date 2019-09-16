@@ -22,7 +22,7 @@ const updatingScoreboard = function (winnerCells, addedScoreCell, subsScoreCell,
             oPoints -= subsPoints;
             addedScoreCell.html(xPoints);
             subsScoreCell.html(oPoints);
-            winnerPage('X');
+            winnerPage('X', 'O', '4', '2');
         }
         else if (winner === 'O') {
             oPoints += addPoints;
@@ -48,7 +48,6 @@ const updatingScoreboard = function (winnerCells, addedScoreCell, subsScoreCell,
             addedScoreCell.html(oPoints);
             subsScoreCell.html(xPoints);
             winnerPage('O');
-
         }
     } else if (counts.true == 5) {
         addPoints = 2;
@@ -65,24 +64,29 @@ const updatingScoreboard = function (winnerCells, addedScoreCell, subsScoreCell,
     }
 };
 
-const winnerPage = function (winner) {
+const winnerPage = function (winner, loser, plusPoints, minusPoints) {
+    for (let i = 0; i < xCells.length; i++) {
+        xCells[i] = true;
+    } for (let i = 0; i < oCells.length; i++) {
+        oCells[i] = true;
+    }
     if (xPoints >= 10 || oPoints >= 10) {
         $('.container3').slideDown();
         $('#winner').show();
-        $('#winner').text(`"${winner}" wins!`);
+        $('#winner').html(`"${winner}" wins!`);
         $('.crown').show();
         $('.continue').hide();
         $('.play-again').fadeIn();
     }  else if (xPoints >= 10 && oPoints >= 10) {
         $('.container3').slideDown();
         $('#winner').show();
-        $('#winner').text(`"Everyone is a Winner!`);
+        $('#winner').html(`"Everyone is a Winner!`);
         $('.crown').show();
         $('.continue').hide();
         $('.play-again').fadeIn();
-    }  else {
+    }  else if (turnsCount <= 8) {
         $('.play-again').hide();
-        $('#winner').hide();
+        $('#winner').html(`"${winner}": + ${plusPoints} <br> "${loser}": - ${minusPoints}`);
         $('.continue').show();
         $('.quit').show();
         $('.container3').slideDown();
@@ -104,9 +108,10 @@ const winnerCheck = function (winCell, winner) {
         }
 
     } else if (turnsCount > 8) { 
-        $('#winner').text(`it's a draw!`);
+        $('#winner').html(`it's a draw!`);
         $('.container3').slideDown();
         $('.crown').hide();
+        $('.play-again').hide();
         $('.continue').show();
         xPoints++;
         $('#xScore').html(xPoints);
@@ -232,4 +237,5 @@ $(document).ready(settingUpPages);
 //make the transitioon to winner window a bit smother
 
 // bugs-
-//when I click on play again, after the first round, it shows the winner already, even before getting to 10
+//after it shows the winner we can still play until we click another button
+//play with class names play-again and continue

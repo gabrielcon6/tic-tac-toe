@@ -111,8 +111,8 @@ body {
     width: 80%;
     height: 80vh;
     background-color: white;
-    border-radius: 30px;
     display: table;
+    border-radius: 30px;
 }
 
 .start-button {
@@ -120,12 +120,8 @@ body {
     color: #3498db;
     font-size: 12px;
     border: 1px solid rgba(75, 127, 248, 0.4);
-    border-radius: 12px;
     padding: 3px 5px;
-}
-.start-button:hover {
-    font-size: 16px;
-    box-shadow: 3px 10px rgba(163, 205, 241, 0.849);
+    border-radius: 12px;
 }
 h1 {
     color: #3498db;
@@ -144,15 +140,15 @@ h1 {
     width: 80%;
     height: 80vh;
     background-color: white;
-    border-radius: 30px;
     display: table;
+    border-radius: 30px;
 }
 td {
     color: #3498db;
     font-size: 2rem;
 }
 table {
-    margin: 10% 5% 0;
+    margin: 5% 5% 0 5%;
 }
 td {
     width: 25vw;
@@ -166,112 +162,139 @@ section {
 #xScore, #oScore, #scoreboard {
     color: #f1c40f;
 }
+.container3 {
+    text-align: center;
+    display: inline-block;
+    margin: 10%;
+    color: #f1c40f;
+}
 .bottom-buttons {
     font-family: 'Dosis', sans-serif;
     color: #3498db;
     display: inline-block;
     list-style: none;
-    /* font-size: 12px; */
-    /* padding: 3px 5px; */
-}
-.bottom-button:hover {
-    /* font-size: 16px; */
-    box-shadow: 3px 10px rgba(163, 205, 241, 0.849);
+    font-size: 14px;
+    margin-top: 5%
 }
 .play-again {
     border: 1px solid rgba(75, 127, 248, 0.4);
+    float: left;
+    margin-right: 5px;
+    padding: 3px 4px;
     border-radius: 12px;
 }
 .continue {
     border: 1px solid rgba(75, 127, 248, 0.4);
-    border-radius: 12px;
     float: left;
-
+    margin-right: 5px;
+    padding: 3px 4px;
+    border-radius: 12px;
 }
+
 .quit {
     border: 1px solid rgba(75, 127, 248, 0.4);
-    border-radius: 8px;
+    float: right;
+    margin-left: 10px;
+    padding: 3px 4px;
+    border-radius: 12px;
 }
 .pointer, #scoreboard {
     cursor: pointer;
+}
+
+#winner {
+    color: #f1c40f;
+    font-size: 20px;
+    margin: 0 0;
+    padding: 0;
+    display: inline-block;
 }
 .cell1{
     border-bottom: 8px solid rgba(75, 127, 248, 1);
     border-right: 8px solid rgba(75, 127, 248, 1);
-    border-radius: 8px;
 }
 .cell2{
     border-bottom: 8px solid rgba(75, 127, 248, 0.7);
     border-right: 8px solid rgba(75, 127, 248, 0.4);
-    border-radius: 8px;
 }
 .cell3{
     border-bottom: 8px solid rgba(75, 127, 248, 0.3);
-    border-radius: 8px;
 }
 .cell4 {
     border-bottom: 8px solid rgba(75, 127, 248, 1);
     border-right: 8px solid rgba(75, 127, 248, 0.7);
-    border-radius: 8px;
 }
 .cell5 {
     border-bottom: 8px solid rgba(75, 127, 248, 0.7);
     border-right: 8px solid rgba(75, 127, 248, 0.4);
-    border-radius: 8px;
 }
 .cell6 {
     border-bottom: 8px solid rgba(75, 127, 248, 0.3);
-    border-radius: 8px;
 } 
 .cell7{
     border-right: 8px solid rgba(75, 127, 248, 0.3);
-    border-radius: 8px;
 }
 .cell8 {
     border-right: 8px solid rgba(75, 127, 248, 0.3);
-    border-radius: 8px;
 }
 td:hover {
     border-color: rgb(47, 43, 255);
-    animation: pulse 2s infinite;
 }
-@keyframes pulse {
-    0% {
-    border-color: aliceblue;
+
+  @media screen and (min-width: 1000px) {
+    .container {
+        width: 40%;
+        height: 70vh;
+        margin: 5% auto;
     }
-    100% {
-    border-color: hsl(246, 100%, 42%);
+    h1 {
+        font-size: 115px;
+        margin: 0 0 5%;
+    } 
+    .start-button {
+        font-size: 16px;
+        border: 1px solid rgba(75, 127, 248, 0.4);
+        padding: 3px 5px;
+    }
+    .start-button:hover {
+        font-size: 20px;
+        box-shadow: 3px 10px rgba(163, 205, 241, 0.849);
+    }
+    .container2 {
+        margin: 5% auto;
+        width: 40%;
+        height: 70vh;
+    }
+    td {
+        color: #3498db;
+        font-size: 2rem;
+    }
+    table {
+        margin: 5% 5% 0 5%;
+    }
+    td {
+        width: 25vw;
+        height: 20vh;
+        text-align: center;
+        vertical-align: middle;
+    }
+    .cell {
+        font-size: 60px;
+    }
+
+    .cell1:hover, .cell2:hover {
+        border-bottom: 10px solid rgb(47, 43, 255);
+        border-right: 10px solid rgb(47, 43, 255);
+    }
+    .cell3:hover, .cell6:hover{
+        border-bottom: 10px solid rgb(47, 43, 255);
+    }
+    .cell4:hover, .cell5:hover {
+        border-bottom: 10px solid rgb(47, 43, 255);
+        border-right: 10px solid rgb(47, 43, 255);
+    }
+    .cell7:hover, .cell8:hover{
+        border-right: 10px solid rgb(47, 43, 255);
     }
   }
-
-  /* 
-#winner {
-    color: #f1c40f;
-    font-size: 50px;
-    margin: 0;
-    padding: 0;
-}
-.fas{
-    color: #f1c40f;
-    font-size: 70px;
-}
-.pointer, #scoreboard {
-    cursor: pointer;
-}
-#scoreboard {
-    font-size: 36px;
-}
-
-section {
-    color: #3498db;
-    font-size: 20px;
-}
-#xScore, #oScore {
-    color: #f1c40f;
-}
-
-@media screen and (max-width: 450px) {
-    body {
-      width: 100%;
-    }
-   } */
+  
