@@ -74,20 +74,26 @@ const winnerPage = function (winner, loser, plusPoints, minusPoints) {
         oCells[i] = true;
     }
     if (xPoints >= 10 || oPoints >= 10) {
+        $('td').css("width", "5vw");
+        $('td').css("height", "10vh");
         $('.container3').slideDown();
         $('#winner').show().html(`"${winner}" wins!`);
         $('.crown').show();
         $('.continue').hide();
         $('.play-again').fadeIn();
     } else if (xPoints >= 10 && oPoints >= 10) {
+        $('td').css("width", "5vw");
+        $('td').css("height", "10vh");
         $('.container3').slideDown();
         $('#winner').show().html(`"Everyone is a Winner!`);
         $('.crown').show();
         $('.continue').hide();
         $('.play-again').fadeIn();
     } else if (turnsCount <= maxTurns+1) {
+        $('td').css("width", "5vw");
+        $('td').css("height", "10vh");
         $('.play-again').hide();
-        $('#winner').html(`"${winner}": ${plusPoints} <br> "${loser}": ${minusPoints}`);
+        $('#winner').html(`${winner}: <span style="color:#3498db">${plusPoints}</span> <br> ${loser}: <span style="color:#3498db">${minusPoints}</span>`);
         $('.continue').show();
         $('.quit').show();
         $('.container3').slideDown();
@@ -141,11 +147,15 @@ const resetCells = function () {
 
 const playAgain = function () {
     $('.continue').on('click', function () {
+        $('td').css("width", "25vw");
+        $('td').css("height", "20vh");
         $('.container3').hide();
         $('.container2').slideDown('slow');
         resetCells();
     });
     $('.play-again').on('click', function () {
+        $('td').css("width", "25vw");
+        $('td').css("height", "20vh");
         $('.container3').hide();
         $('.container2').slideDown('slow');
         xPoints = 0;
@@ -155,6 +165,8 @@ const playAgain = function () {
         resetCells();
     });
     $('.quit').on('click', function () {
+        $('td').css("width", "25vw");
+        $('td').css("height", "20vh");
         $('.container2').hide();
         $('.container3').hide();
         $('.container').slideDown('slow');
@@ -237,11 +249,6 @@ $(document).ready(settingUpPages);
 
 
 //todo:
-
-//make it responsive
-//learn how to creat modals
-// add a strike through line when someone wins?
-
 //read.me
 
 //make the transitioon to winner window a bit smother

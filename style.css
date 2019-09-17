@@ -186,6 +186,9 @@ td:hover {
         color: #3498db;
         font-size: 2rem;
     }
+    /* table {
+        float: left;
+    } */
     table {
         margin: 5% 5% 0 5%;
     }
@@ -224,6 +227,24 @@ td:hover {
     }
     .cell7:hover, .cell8:hover{
         border-right: 10px solid rgb(47, 43, 255);
+    }
+    .container3 {
+        float: right;
+        margin-top: -40%;
+    }
+    .continue:hover , .play-again:hover , .quit:hover {
+        font-size: 16px;
+        box-shadow: 2px 5px rgba(163, 205, 241, 0.849);
+    }
+    #winner {
+        font-size: 40px;
+        margin-top: -80px;
+        padding-bottom: 100px;
+    }
+    .crown {
+        font-size: 70px;
+        margin: -60px 0 20px;
+    
     }
   }
   
