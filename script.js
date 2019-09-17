@@ -9,63 +9,53 @@ let oPoints = 0;
 let gameNumber = 0;
 let maxTurns = 8;
 
-//I will make this function DRY again - stay tuned
-const updatingScoreboard = function (winnerCells, addedScoreCell, subsScoreCell, winner) {
+const updatingScoreboard = function (winnerCells, winner) {
     let counts = {};
-    let addPoints = 0;
-    let subsPoints = 0;
-    winnerCells.forEach(function (y) { 
-        counts[y] = (counts[y] || 0) + 1; 
+    winnerCells.forEach(function (y) {
+        counts[y] = (counts[y] || 0) + 1;
     });
     if (counts.true == 3) {
-        addPoints = 4;
-        subsPoints = 2;
         if (winner === 'X') {
-            xPoints += addPoints;
-            oPoints -= subsPoints;
-            addedScoreCell.html(xPoints);
-            subsScoreCell.html(oPoints);
-            winnerPage('X', 'O', '+ 4', '- 2');
-        }
-        else if (winner === 'O') {
-            oPoints += addPoints;
-            xPoints -= subsPoints;
-            addedScoreCell.html(oPoints);
-            subsScoreCell.html(xPoints);
-            winnerPage('O', 'X', '+ 4', '- 2');
+            calcPointsX(4, 2, $('#xScore'), $('#oScore'));
+        } else if (winner === 'O') {
+            calcPointsO(4, 2, $('#oScore'), $('#xScore'));
         }
     } else if (counts.true == 4) {
-        addPoints = 3;
-        subsPoints = 1;
         if (winner === 'X') {
-            xPoints += addPoints;
-            oPoints -= subsPoints;
-            addedScoreCell.html(xPoints);
-            subsScoreCell.html(oPoints);
-            winnerPage('X', 'O', '+ 3', '- 1');
-
+            calcPointsX(3, 1, $('#xScore'), $('#oScore'));
         }
         else if (winner === 'O') {
-            oPoints += addPoints;
-            xPoints -= subsPoints;
-            addedScoreCell.html(oPoints);
-            subsScoreCell.html(xPoints);
-            winnerPage('O', 'X', '+ 3', '- 1');
+            calcPointsO(3, 1, $('#oScore'), $('#xScore'));
         }
     } else if (counts.true == 5) {
-        addPoints = 2;
         if (winner === 'X') {
-            xPoints += addPoints;
-            addedScoreCell.html(xPoints);
-            winnerPage('X', 'O', '+ 2', '0');
+            calcPointsX(2, 0, $('#xScore'), $('#oScore'));
         }
         else if (winner === 'O') {
-            oPoints += addPoints;
-            addedScoreCell.html(oPoints);
-            winnerPage('O', 'X', '+ 2', '0');
+            calcPointsO(2, 0, $('#oScore'), $('#xScore'));
         }
     }
 };
+
+const calcPointsX = function (add, sub, addedScoreCell, subScoreCell) {
+    let addValue = add;
+    let subValue = sub;
+    xPoints += addValue;
+    oPoints -= subValue;
+    addedScoreCell.html(xPoints);
+    subScoreCell.html(oPoints);
+    winnerPage('X', 'O', addValue, subValue);
+}
+
+const calcPointsO = function (add, sub, addedScoreCell, subScoreCell) {
+    let addValue = add;
+    let subValue = sub;
+    oPoints += addValue;
+    xPoints -= subValue;
+    addedScoreCell.html(xPoints);
+    subScoreCell.html(oPoints);
+    winnerPage('X', 'O', addValue, subValue);
+}
 
 const winnerPage = function (winner, loser, plusPoints, minusPoints) {
     for (let i = 0; i < xCells.length; i++) {
@@ -74,30 +64,27 @@ const winnerPage = function (winner, loser, plusPoints, minusPoints) {
         oCells[i] = true;
     }
     if (xPoints >= 10 || oPoints >= 10) {
-        $('td').css("width", "5vw");
-        $('td').css("height", "10vh");
+        $('td').css({ 'width': '5vw', 'height': '10vh' });
         $('.container3').slideDown();
         $('#winner').show().html(`"${winner}" wins!`);
         $('.crown').show();
         $('.continue').hide();
         $('.play-again').fadeIn();
     } else if (xPoints >= 10 && oPoints >= 10) {
-        $('td').css("width", "5vw");
-        $('td').css("height", "10vh");
+        $('td').css({ 'width': '5vw', 'height': '10vh' });
         $('.container3').slideDown();
         $('#winner').show().html(`"Everyone is a Winner!`);
         $('.crown').show();
         $('.continue').hide();
         $('.play-again').fadeIn();
-    } else if (turnsCount <= maxTurns+1) {
-        $('td').css("width", "5vw");
-        $('td').css("height", "10vh");
+    } else if (turnsCount <= maxTurns + 1) {
+        $('td').css({ 'width': '5vw', 'height': '10vh' });
         $('.play-again').hide();
-        $('#winner').html(`${winner}: <span style="color:#3498db">${plusPoints}</span> <br> ${loser}: <span style="color:#3498db">${minusPoints}</span>`);
-        $('.continue').show();
-        $('.quit').show();
-        $('.container3').slideDown();
         $('.crown').hide();
+        $('#winner').html(`${winner}: <span style="color:#3498db">+ ${plusPoints}</span> <br>
+                         ${loser}: <span style="color:#3498db">- ${minusPoints}</span>`);
+        $('.continue, .quit').show();
+        $('.container3').slideDown();
         playAgain();
     }
 }
@@ -111,13 +98,12 @@ const winnerCheck = function (winCell, winner) {
         if (winner == 'X') {
             gameNumber++;
             maxTurns++;
-            updatingScoreboard(xCells, $('#xScore'), $('#oScore'), 'X');
+            updatingScoreboard(xCells, 'X');
         } else if (winner == 'O') {
             gameNumber++;
             maxTurns++;
-            updatingScoreboard(oCells, $('#oScore'), $('#xScore'), 'O');
+            updatingScoreboard(oCells, 'O');
         }
-
     } else if (turnsCount > maxTurns) {
         gameNumber++;
         maxTurns++;
@@ -129,7 +115,7 @@ const winnerCheck = function (winCell, winner) {
         $('#xScore').html(xPoints);
         oPoints++;
         $('#oScore').html(oPoints);
-        winnerPage('X', 'O', '+ 1', '+ 1');
+        winnerPage('X', 'O', '1', '1');
     }
 };
 
@@ -147,15 +133,13 @@ const resetCells = function () {
 
 const playAgain = function () {
     $('.continue').on('click', function () {
-        $('td').css("width", "25vw");
-        $('td').css("height", "20vh");
+        $('td').css({ 'width': '25vw', 'height': '20vh' });
         $('.container3').hide();
         $('.container2').slideDown('slow');
         resetCells();
     });
     $('.play-again').on('click', function () {
-        $('td').css("width", "25vw");
-        $('td').css("height", "20vh");
+        $('td').css({ 'width': '25vw', 'height': '20vh' });
         $('.container3').hide();
         $('.container2').slideDown('slow');
         xPoints = 0;
@@ -165,10 +149,8 @@ const playAgain = function () {
         resetCells();
     });
     $('.quit').on('click', function () {
-        $('td').css("width", "25vw");
-        $('td').css("height", "20vh");
-        $('.container2').hide();
-        $('.container3').hide();
+        $('td').css({ 'width': '25vw', 'height': '20vh' });
+        $('.container2, .container3').hide();
         $('.container').slideDown('slow');
         xPoints = 0;
         $('#xScore').html(xPoints);
@@ -200,7 +182,7 @@ const xOrOPrint = function (turn) {
     cellTurn.html(turn).hide().fadeIn().fadeIn('slow').fadeIn(9000);
     turnsCount++;
     if (turn === 'X') {
-        checkXCellsValues(); 
+        checkXCellsValues();
     } else if (turn === 'O') {
         checkOCellsValues();
     }
@@ -253,7 +235,4 @@ $(document).ready(settingUpPages);
 
 //make the transitioon to winner window a bit smother
 
-// bugs-
-//play with class names play-again and continue
-// ask aaron the about the order of the functions
 //do code review
