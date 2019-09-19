@@ -10,12 +10,14 @@ let gameNumber = 0;
 let maxTurns = 8;
 
 const resetCells = function () {
-    for (let i = 0; i < xCells.length; i++) {
+    for (i in xCells) {
         xCells[i] = false;
-    } for (let i = 0; i < oCells.length; i++) {
-        oCells[i] = false;
-    } for (let i = 0; i < cellLocations.length; i++) {
-        cellLocations[i].text('');
+    }
+    for (j in oCells) {
+        oCells[j] = false;
+    }
+    for (k in cellLocations) {
+        cellLocations[k].text('');
     }
     turnsCount = gameNumber;
     startingGame();
@@ -50,11 +52,12 @@ const playAgain = function () {
     })
 };
 
-const winnerPage = function (winner, loser, plusPoints, minusPoints) {
-    for (let i = 0; i < xCells.length; i++) {
+const winnerPage = function (winner, loser, sign1, plusPoints, sign2, minusPoints) {
+    for (i in xCells) {
         xCells[i] = true;
-    } for (let i = 0; i < oCells.length; i++) {
-        oCells[i] = true;
+    }
+    for (j in oCells) {
+        oCells[j] = true;
     }
     if (xPoints >= 10 || oPoints >= 10) {
         $('td').css({ 'width': '5vw', 'height': '10vh' });
@@ -63,6 +66,7 @@ const winnerPage = function (winner, loser, plusPoints, minusPoints) {
         $('.crown').show();
         $('.continue').hide();
         $('.play-again').fadeIn();
+        //localStorage.getItem
     } else if (xPoints >= 10 && oPoints >= 10) {
         $('td').css({ 'width': '5vw', 'height': '10vh' });
         $('.container3').slideDown();
@@ -74,8 +78,8 @@ const winnerPage = function (winner, loser, plusPoints, minusPoints) {
         $('td').css({ 'width': '5vw', 'height': '10vh' });
         $('.play-again').hide();
         $('.crown').hide();
-        $('#winner').html(`${winner}: <span style="color:#3498db">+ ${plusPoints}</span> <br>
-                         ${loser}: <span style="color:#3498db">- ${minusPoints}</span>`);
+        $('#winner').html(`${winner}: <span style="color:#3498db">${sign1} ${plusPoints}</span> <br>
+                         ${loser}: <span style="color:#3498db">${sign2} ${minusPoints}</span>`);
         $('.continue, .quit').show();
         $('.container3').slideDown();
         playAgain();
@@ -89,7 +93,7 @@ const calcPointsX = function (add, sub, addedScoreCell, subScoreCell) {
     oPoints -= subValue;
     addedScoreCell.html(xPoints);
     subScoreCell.html(oPoints);
-    winnerPage('X', 'O', addValue, subValue);
+    winnerPage('X', 'O', '+', addValue, '-', subValue);
 }
 
 const calcPointsO = function (add, sub, addedScoreCell, subScoreCell) {
@@ -99,7 +103,7 @@ const calcPointsO = function (add, sub, addedScoreCell, subScoreCell) {
     xPoints -= subValue;
     addedScoreCell.html(oPoints);
     subScoreCell.html(xPoints);
-    winnerPage('O', 'X', addValue, subValue);
+    winnerPage('O', 'X', '+', addValue, '-', subValue);
 }
 
 const updatingScoreboard = function (winnerCells, winner) {
@@ -130,18 +134,18 @@ const updatingScoreboard = function (winnerCells, winner) {
     }
 };
 
-const draw = function() {
+const draw = function () {
     gameNumber++;
-        maxTurns++;
-        $('.container3').slideDown();
-        $('.crown').hide();
-        $('.play-again').hide();
-        $('.continue').show();
-        xPoints++;
-        $('#xScore').html(xPoints);
-        oPoints++;
-        $('#oScore').html(oPoints);
-        winnerPage('X', 'O', '1', '1');
+    maxTurns++;
+    $('.container3').slideDown();
+    $('.crown').hide();
+    $('.play-again').hide();
+    $('.continue').show();
+    xPoints++;
+    $('#xScore').html(xPoints);
+    oPoints++;
+    $('#oScore').html(oPoints);
+    winnerPage('X', 'O', '+', '1', '+', '1');
 }
 
 const winnerCheck = function (winCell, winner) {
@@ -217,11 +221,6 @@ $(document).ready(settingUpPages);
 
 
 //todo:
-//read.me
-
-//make the transitioon to winner window a bit smother
-
+//read.me traduzir do pt
+//comments
 //do code review
-
-// bug
-//when it is a draw, it shows as +1 and -1 on the winner page

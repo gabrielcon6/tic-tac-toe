@@ -1,0 +1,235 @@
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
+
+/* html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+    line-height:1;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+hr {
+    display:block;
+    height:1px;
+    border:0;  
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+} */
+
+body {
+    font-family: 'Indie Flower', cursive;
+    font-size: 60px;
+    font-weight: bold;
+    color:#3498db;
+    background-color: #f1c40f;
+}
+.container {
+    padding: auto;
+    /* display: flex; */
+    justify-content: center;
+    margin: 100px 400px;
+    text-align: center;
+    background-color: white;
+    border-radius: 30px;
+    height: 500px;
+}
+h1 {
+    font-family: 'Indie Flower', cursive;
+    margin-bottom: -30px;
+    padding-top: 100px;
+}
+a {
+    font-family: 'Dosis', sans-serif;
+    font-size: 24px;
+    color: #3498db;
+    border: 1px solid rgba(75, 127, 248, 0.4);
+    border-radius: 12px;
+    padding: 10px;
+    text-decoration: none;
+}
+a:hover {
+    font-size: 26px;
+    box-shadow: 3px 10px rgba(163, 205, 241, 0.849);
+}
+.container2 {
+    padding: auto;
+    display: flex;
+    justify-content: center;
+    margin: 50px 400px;
+    text-align: center;
+    background-color: white;
+    border-radius: 30px;
+}
+td {
+    padding: 30px;
+    margin: 25px;
+    width: 120px;
+    height: 120px;
+}
+
+.cell1{
+    border-bottom: 8px solid rgba(75, 127, 248, 1);
+    border-right: 8px solid rgba(75, 127, 248, 1);
+    border-radius: 8px;
+}
+
+.cell2{
+    border-bottom: 8px solid rgba(75, 127, 248, 0.7);
+    border-right: 8px solid rgba(75, 127, 248, 0.4);
+    border-radius: 8px;
+
+}
+
+.cell3{
+    border-bottom: 8px solid rgba(75, 127, 248, 0.3);
+    border-radius: 8px;
+
+}
+
+.cell4 {
+    border-bottom: 8px solid rgba(75, 127, 248, 1);
+    border-right: 8px solid rgba(75, 127, 248, 0.7);
+    border-radius: 8px;
+
+}
+.cell5 {
+    border-bottom: 8px solid rgba(75, 127, 248, 0.7);
+    border-right: 8px solid rgba(75, 127, 248, 0.4);
+    border-radius: 8px;
+
+}
+.cell6 {
+    border-bottom: 8px solid rgba(75, 127, 248, 0.3);
+    border-radius: 8px;
+
+} 
+
+.cell7{
+    border-right: 8px solid rgba(75, 127, 248, 0.3);
+    border-radius: 8px;
+
+}
+.cell8 {
+    border-right: 8px solid rgba(75, 127, 248, 0.3);
+    border-radius: 8px;
+}
+td:hover {
+    border-color: rgb(47, 43, 255);
+    animation: pulse 2s infinite;
+    /* background-color: rgb(154, 165, 165); */
+}
+@keyframes pulse {
+    0% {
+    border-color: aliceblue;
+    }
+    100% {
+    border-color: hsl(246, 100%, 42%);
+    }
+  }
+#winner {
+    color: #f1c40f;
+    font-size: 50px;
+    margin: 0;
+    padding: 0;
+}
+.fas{
+    color: #f1c40f;
+    font-size: 70px;
+}
+.pointer, #scoreboard {
+    cursor: pointer;
+}
+#scoreboard {
+    font-size: 36px;
+}
+
+section {
+    color: #3498db;
+    font-size: 20px;
+    /* display: inline-block; */
+}
+#xScore, #oScore {
+    color: #f1c40f;
+}
