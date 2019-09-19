@@ -2,13 +2,15 @@ body {
     font-family: 'Indie Flower', cursive;
     background-color: #f1c40f;
     text-decoration: none;
+    height: 70vh; 
+    height: calc(var(--vh, 1vh) * 70);
 }
 
 .container {
-    margin: 10% auto;
+    margin: 6vh auto;
     text-align: center;
-    padding: 20px 0;
-    width: 80%;
+    padding: 3vh 0;
+    width: 80vw;
     height: 80vh;
     background-color: white;
     display: table;

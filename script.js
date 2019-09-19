@@ -219,8 +219,16 @@ const settingUpPages = function () {
 
 $(document).ready(settingUpPages);
 
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+window.addEventListener('resize', () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  });
+
 
 //todo:
 //read.me traduzir do pt
 //comments
 //do code review
+//make it fit perfectly on iphone7
