@@ -2,8 +2,8 @@ body {
     font-family: 'Indie Flower', cursive;
     background-color: #f1c40f;
     text-decoration: none;
-    height: 70vh; 
-    height: calc(var(--vh, 1vh) * 70);
+    height: 88vh; 
+    height: calc(var(--vh, 1vh) * 88);
 }
 
 .container {
