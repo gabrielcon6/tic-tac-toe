@@ -24,6 +24,30 @@ Points system:
 
 ·      The first player to get to 10 points in total is the winner of the game.
 
- 
+Features:
+- if you click on the crown, on the top of the table, you are able to toggle the scores, in case you want a cleaner page :)
+
+
+
+I would like to implement, in the future:
+
+- option to add the players name;
+
+- medium and hard game levels;
+
+- database;
+
+- score history.
+
+
+
+
+
+Link to the live game: https://gabrielcon6.github.io/seifx01-project1/
+
+This app was built using: html, css, javascript, jquery, google fonts, animate.css & font awesome.
+
+
+
 
 Have fun!
