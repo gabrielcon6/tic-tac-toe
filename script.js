@@ -1,90 +1,92 @@
-//lateste version
+//to understand the code's logic better, please read it from bottom to top
 
+const cellLocations = [$('.cell-1'), $('.cell-2'), $('.cell-3'), $('.cell-4'), $('.cell-5'), $('.cell-6'), $('.cell-7'), $('.cell-8'), $('.cell-9')];
+let cellVal = [false, false, false, false, false, false, false, false, false];
 let turnsCount = 0;
 let cellTurn;
 let thisIndex;
-let cellLocations = [$('.cell1'), $('.cell2'), $('.cell3'), $('.cell4'), $('.cell5'), $('.cell6'), $('.cell7'), $('.cell8'), $('.cell9')];
-let xCells = [false, false, false, false, false, false, false, false, false];
-let oCells = [false, false, false, false, false, false, false, false, false];
 let xPoints = 0;
 let oPoints = 0;
 let gameNumber = 0;
 let maxTurns = 8;
 
-const resetCells = function () {
-    for (i in xCells) {
-        xCells[i] = false;
+const playingAgain = function () { // cleaning up everything to go to start a new
+    for (i in cellLocations) {
+        cellLocations[i].text('');
     }
-    for (j in oCells) {
-        oCells[j] = false;
+    for (i in cellVal) {
+        cellVal[i] = false;
     }
-    for (k in cellLocations) {
-        cellLocations[k].text('');
+    $('td').css({ 'width': '25vw', 'height': '20vh' });
+    $('.container-3').hide();
+    $('.container-2').slideDown('slow');
+    xPoints = 0;
+    $('#x-score').html(xPoints);
+    oPoints = 0;
+    $('#o-score').html(oPoints);
+    if (gameType == '1 Player') {
+        starting1PGame();
+    } else if (gameType == '2 Players') {
+        starting2PGame();
     }
-    turnsCount = gameNumber;
-    startingGame();
 }
 
-const playAgain = function () {
+const continuingGame = function () { // cleaning up everything to go to the next round of a game
+    for (i in cellLocations) {
+        cellLocations[i].text('');
+    }
+    for (i in cellVal) {
+        cellVal[i] = false;
+    }
+    $('td').css({ 'width': '25vw', 'height': '20vh' });
+    $('.container-3').hide();
+    $('.container-2').slideDown('slow');
+    if (gameType == '1 Player') { //to make sure it redirects to the right game
+        starting1PGame();
+    } else if (gameType == '2 Players') {
+        starting2PGame();
+    }
+}
+const gameOptions = function () {
+    for (i in cellVal) { //all true (random pick) so no one can click on the cells whilst showing with the results
+        cellVal[i] = true;
+    }
+    turnsCount = gameNumber;
     $('.continue').on('click', function () {
-        $('td').css({ 'width': '25vw', 'height': '20vh' });
-        $('.container3').hide();
-        $('.container2').slideDown('slow');
-        resetCells();
+        continuingGame();
     });
     $('.play-again').on('click', function () {
-        $('td').css({ 'width': '25vw', 'height': '20vh' });
-        $('.container3').hide();
-        $('.container2').slideDown('slow');
-        xPoints = 0;
-        $('#xScore').html(xPoints);
-        oPoints = 0;
-        $('#oScore').html(oPoints);
-        resetCells();
+        playingAgain();
     });
     $('.quit').on('click', function () {
-        $('td').css({ 'width': '25vw', 'height': '20vh' });
-        $('.container2, .container3').hide();
-        $('.container').slideDown('slow');
-        xPoints = 0;
-        $('#xScore').html(xPoints);
-        oPoints = 0;
-        $('#oScore').html(oPoints);
-        resetCells();
+        window.location.reload(); // this reloads game to initial page, in case someone quits.
     })
 };
 
 const winnerPage = function (winner, loser, sign1, plusPoints, sign2, minusPoints) {
-    for (i in xCells) {
-        xCells[i] = true;
-    }
-    for (j in oCells) {
-        oCells[j] = true;
-    }
-    if (xPoints >= 10 || oPoints >= 10) {
+    if (xPoints >= 10 && oPoints >= 10) { // if both players get to 10 points
         $('td').css({ 'width': '5vw', 'height': '10vh' });
-        $('.container3').slideDown();
-        $('#winner').show().html(`"${winner}" wins!`);
+        $('.container-3').slideDown( 1500 );
+        $('#winner').slideDown( 1500 ).html(`"Everyone is a Winner!`);
         $('.crown').show();
         $('.continue').hide();
         $('.play-again').fadeIn();
-        //localStorage.getItem
-    } else if (xPoints >= 10 && oPoints >= 10) {
+    } else if (xPoints >= 10 || oPoints >= 10) { // if only one player gets to 10 points
         $('td').css({ 'width': '5vw', 'height': '10vh' });
-        $('.container3').slideDown();
-        $('#winner').show().html(`"Everyone is a Winner!`);
+        $('.container-3').slideDown( 1500 );
+        $('#winner').slideDown( 1500 ).html(`"${winner}" wins!`);
         $('.crown').show();
         $('.continue').hide();
         $('.play-again').fadeIn();
-    } else if (turnsCount <= maxTurns + 1) {
+    } else if (turnsCount <= maxTurns + 1) { // if no one gets to 10 points the game goes on
         $('td').css({ 'width': '5vw', 'height': '10vh' });
         $('.play-again').hide();
         $('.crown').hide();
         $('#winner').html(`${winner}: <span style="color:#3498db">${sign1} ${plusPoints}</span> <br>
                          ${loser}: <span style="color:#3498db">${sign2} ${minusPoints}</span>`);
         $('.continue, .quit').show();
-        $('.container3').slideDown();
-        playAgain();
+        $('.container-3').slideDown();
+        gameOptions();
     }
 }
 
@@ -108,30 +110,32 @@ const calcPointsO = function (add, sub, addedScoreCell, subScoreCell) {
     winnerPage('O', 'X', '+', addValue, '-', subValue);
 }
 
-const updatingScoreboard = function (winnerCells, winner) {
-    let counts = {};
-    winnerCells.forEach(function (y) {
-        counts[y] = (counts[y] || 0) + 1;
-    });
-    if (counts.true == 3) {
-        if (winner === 'X') {
-            calcPointsX(4, 2, $('#xScore'), $('#oScore'));
-        } else if (winner === 'O') {
-            calcPointsO(4, 2, $('#oScore'), $('#xScore'));
+const updatingScoreboard = function (winner) {
+    let counts = 0;
+    for (i in cellVal) {
+        if (cellVal[i] === winner) {
+            counts++;
         }
-    } else if (counts.true == 4) {
-        if (winner === 'X') {
-            calcPointsX(3, 1, $('#xScore'), $('#oScore'));
+    } // counting how many 1 or -1 are in the array that register each go
+    if (counts === 3) { // this is how we define the points. please see read.me file to understand how the scores work.
+        if (winner == 1) {
+            calcPointsX(4, 2, $('#x-score'), $('#o-score')); // pass on the arguments to update the score on the page and the numbers to be used
+        } else if (winner == -1) {
+            calcPointsO(4, 2, $('#o-score'), $('#x-score'));
         }
-        else if (winner === 'O') {
-            calcPointsO(3, 1, $('#oScore'), $('#xScore'));
+    } else if (counts === 4) {
+        if (winner == 1) {
+            calcPointsX(3, 1, $('#x-score'), $('#o-score'));
         }
-    } else if (counts.true == 5) {
-        if (winner === 'X') {
-            calcPointsX(2, 0, $('#xScore'), $('#oScore'));
+        else if (winner == -1) {
+            calcPointsO(3, 1, $('#o-score'), $('#x-score'));
         }
-        else if (winner === 'O') {
-            calcPointsO(2, 0, $('#oScore'), $('#xScore'));
+    } else if (counts === 5) {
+        if (winner == 1) {
+            calcPointsX(2, 0, $('#x-score'), $('#o-score'));
+        }
+        else if (winner == -1) {
+            calcPointsO(2, 0, $('#o-score'), $('#x-score'));
         }
     }
 };
@@ -139,90 +143,134 @@ const updatingScoreboard = function (winnerCells, winner) {
 const draw = function () {
     gameNumber++;
     maxTurns++;
-    $('.container3').slideDown();
+    $('.container-3').slideDown();
     $('.crown').hide();
     $('.play-again').hide();
     $('.continue').show();
     xPoints++;
-    $('#xScore').html(xPoints);
+    $('#x-score').html(xPoints);
     oPoints++;
-    $('#oScore').html(oPoints);
+    $('#o-score').html(oPoints);
     winnerPage('X', 'O', '+', '1', '+', '1');
 }
 
-const winnerCheck = function (winCell, winner) {
-    if ((winCell[0] && winCell[1] && winCell[2]) || (winCell[0] && winCell[3] && winCell[6]) ||
-        (winCell[0] && winCell[4] && winCell[8]) || (winCell[1] && winCell[4] && winCell[7]) ||
-        (winCell[2] && winCell[4] && winCell[6]) || (winCell[2] && winCell[5] && winCell[8]) ||
-        (winCell[3] && winCell[4] && winCell[5]) || (winCell[6] && winCell[7] && winCell[8])
+const winnerCheck = function () {
+    if (
+        (cellVal[0] + cellVal[1] + cellVal[2]) === 3 || (cellVal[0] + cellVal[3] + cellVal[6]) === 3 ||
+        (cellVal[0] + cellVal[4] + cellVal[8]) === 3 || (cellVal[1] + cellVal[4] + cellVal[7]) === 3 ||
+        (cellVal[2] + cellVal[4] + cellVal[6]) === 3 || (cellVal[2] + cellVal[5] + cellVal[8]) === 3 ||
+        (cellVal[3] + cellVal[4] + cellVal[5]) === 3 || (cellVal[6] + cellVal[7] + cellVal[8]) === 3
     ) {
-        if (winner == 'X') {
-            gameNumber++;
-            maxTurns++;
-            updatingScoreboard(xCells, 'X');
-        } else if (winner == 'O') {
-            gameNumber++;
-            maxTurns++;
-            updatingScoreboard(oCells, 'O');
-        }
-    } else if (turnsCount > maxTurns) {
+        gameNumber++;
+        maxTurns++;
+        updatingScoreboard(1); // pass on the winner as argument
+    } else if (
+        (cellVal[0] + cellVal[1] + cellVal[2]) === -3 || (cellVal[0] + cellVal[3] + cellVal[6]) === -3 ||
+        (cellVal[0] + cellVal[4] + cellVal[8]) === -3 || (cellVal[1] + cellVal[4] + cellVal[7]) === -3 ||
+        (cellVal[2] + cellVal[4] + cellVal[6]) === -3 || (cellVal[2] + cellVal[5] + cellVal[8]) === -3 ||
+        (cellVal[3] + cellVal[4] + cellVal[5]) === -3 || (cellVal[6] + cellVal[7] + cellVal[8]) === -3
+    ) {
+        gameNumber++;
+        maxTurns++;
+        updatingScoreboard(-1); // pass on the winner as argument
+    } else if (turnsCount >= maxTurns) {
         draw();
     }
 };
 
-const xOrOPrint = function (turn) {
-    cellTurn.html(turn).hide().fadeIn().fadeIn('slow').fadeIn(9000);
-    turnsCount++;
-    if (turn === 'X') {
-        xCells[thisIndex] = true;
-        winnerCheck(xCells, 'X');
-    } else if (turn === 'O') {
-        oCells[thisIndex] = true;
-        winnerCheck(oCells, 'O');
-    }
-};
+//****2 PLAYERS GAME UNIQUE FUNCTIONS:****
 
 const xOrOTurn = function () {
-    if (oCells[thisIndex] == false && xCells[thisIndex] == false) {
+    if (cellVal[thisIndex] == false) {
         if (turnsCount % 2 == 0) {
-            xOrOPrint('X');
+            cellTurn.html('X').hide().fadeIn().fadeIn('slow').fadeIn(9000);
+            cellVal[thisIndex] = 1;
         } else if (turnsCount % 2 !== 0) {
-            xOrOPrint('O');
+            cellTurn.html('O').hide().fadeIn().fadeIn('slow').fadeIn(9000);
+            cellVal[thisIndex] = -1;
         }
+        turnsCount++;
+        winnerCheck();
     }
 };
 
-const startingGame = function () {
+const starting2PGame = function () {
+    $('.cell').on('click', function () {
+        cellTurn = $(this);
+        thisIndex = $(this).attr("data-id"); // grabing the index from the ID in the html
+        xOrOTurn();
+    })
+}; //******END OF 2 PLAYERS UNIQUE FUNCTIONS*****
+
+//******1P GAME UNIQUE FUNCTIONS*******
+const randomSpot = function () {
+    let randomNum = Math.floor(Math.random() * Math.floor(9));
+    if (cellVal[randomNum] === false) {
+        cellLocations[randomNum].html('O').hide().delay(100).fadeIn(600);
+        cellVal[randomNum] = -1; // we are using '-1' to represent 'O'
+        turnsCount++;
+        winnerCheck();
+    } else if (turnsCount < maxTurns) {
+        randomSpot(); // it keeps calling it until it finds a vancant cell
+    }
+}
+
+const starting1PGame = function () {
     $('.cell').on('click', function () {
         cellTurn = $(this);
         thisIndex = $(this).attr("data-id");
-        xOrOTurn();
+        if (cellVal[thisIndex] === false) {
+            cellTurn.html('X').hide().fadeIn(600);
+            cellVal[thisIndex] = 1; // we are using '1' to represent 'X'
+            turnsCount++;
+            if (turnsCount < maxTurns) { // to check if there was a tie
+                randomSpot();
+            } else {
+                winnerCheck();
+            }
+        }
     })
-};
+}; //*****END OF 1P GAME FUNCTIONS******
 
+//this function determines the actions depending on each button you choose
 const startGameButton = function () {
-    $('.start-button').on('click', function () {
-        $('.container').hide();
-        $('.container2').slideDown('slow');
-        startingGame();
+    $('.one-player').on('click', function () {
+        $('.one-player, .two-players').hide();
+        $('.level').slideDown('slow');
+        $('.medium, .hard').on('click', function () {
+            $('.premium').slideDown('slow');
+        })
+        $('.easy').on('click', function () {
+            $('.container-1').hide();
+            $('.container-2').slideDown('slow');
+            gameType = 1; //type 1 = 1 player playing against the machine
+            maxTurns++; // maximum of terns is define to know when it is a tie. It is based on number os turns, which is the base for alternating players each beggining of game. that is why they both keep increasing throughout the game
+            starting1PGame();
+        })
+    });
+    $('.two-players').on('click', function () {
+        $('.container-1').hide();
+        $('.container-2').slideDown('slow');
+        gameType = 2; // type 2 = 2 players
+        maxTurns++;
+        starting2PGame();
     })
     $('#scoreboard').on('click', function () {
-        $('.scoreToggle').fadeToggle();
+        $('.score-toggle').fadeToggle();
     })
 };
 
+//this function sets up the first screen, as everything is in containars in the same html
 const settingUpPages = function () {
-    $('.container2').hide();
-    $('.container3').hide();
-    $('a').hide();
-    $('a').slideDown('slow');
+    $('.container-2, .container-3, .level, .premium, a').hide();
+    $('.one-player, .two-players').slideDown('slow');
+    for (i in cellLocations) {
+        cellLocations[i].text('');
+    }
+    for (i in cellVal) {
+        cellVal[i] = false;
+    }
     startGameButton();
 };
 
 $(document).ready(settingUpPages);
-
-//todo:
-//read.me traduzir do pt
-//comments
-//do code review
-//make it fit perfectly on iphone7

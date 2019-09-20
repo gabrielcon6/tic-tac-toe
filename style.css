@@ -2,11 +2,14 @@ body {
     font-family: 'Indie Flower', cursive;
     background-color: #f1c40f;
     text-decoration: none;
-    height: 88vh; 
-    height: calc(var(--vh, 1vh) * 88);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh; 
+    height: calc(var(--vh, 1vh) * 100);
 }
 
-.container {
+.container-1 {
     margin: 6vh auto;
     text-align: center;
     padding: 3vh 0;
@@ -15,15 +18,22 @@ body {
     background-color: white;
     display: table;
     border-radius: 30px;
-}
 
-.start-button {
+}
+.one-player, .two-players, .level {
     font-family: 'Dosis', sans-serif;
     color: #3498db;
     font-size: 12px;
     border: 1px solid rgba(75, 127, 248, 0.4);
     padding: 3px 5px;
     border-radius: 12px;
+}
+.premium {
+    font-family: 'Dosis', sans-serif;
+    font-size: 16px;
+    color: #3498db;
+    font-weight: bold;
+
 }
 h1 {
     color: #3498db;
@@ -35,7 +45,7 @@ h1 {
     display: table-cell;
     vertical-align: middle;
 }
-.container2 {
+.container-2 {
     margin: 10% auto;
     text-align: center;
     padding: 20px 0;
@@ -61,10 +71,10 @@ td {
 section {
     color: #3498db;
 }
-#xScore, #oScore, #scoreboard {
+#x-score, #o-score, #scoreboard {
     color: #f1c40f;
 }
-.container3 {
+.container-3 {
     text-align: center;
     display: inline-block;
     margin: 10%;
@@ -110,49 +120,49 @@ section {
     padding: 0;
     display: inline-block;
 }
-.cell1{
+.cell-1{
     border-bottom: 8px solid rgba(75, 127, 248, 1);
     border-right: 8px solid rgba(75, 127, 248, 1);
     border-radius: 8px;
 }
 
-.cell2{
+.cell-2{
     border-bottom: 8px solid rgba(75, 127, 248, 0.7);
     border-right: 8px solid rgba(75, 127, 248, 0.4);
     border-radius: 8px;
 
 }
 
-.cell3{
+.cell-3{
     border-bottom: 8px solid rgba(75, 127, 248, 0.3);
     border-radius: 8px;
 
 }
 
-.cell4 {
+.cell-4 {
     border-bottom: 8px solid rgba(75, 127, 248, 1);
     border-right: 8px solid rgba(75, 127, 248, 0.7);
     border-radius: 8px;
 
 }
-.cell5 {
+.cell-5 {
     border-bottom: 8px solid rgba(75, 127, 248, 0.7);
     border-right: 8px solid rgba(75, 127, 248, 0.4);
     border-radius: 8px;
 
 }
-.cell6 {
+.cell-6 {
     border-bottom: 8px solid rgba(75, 127, 248, 0.3);
     border-radius: 8px;
 
 } 
 
-.cell7{
+.cell-7{
     border-right: 8px solid rgba(75, 127, 248, 0.3);
     border-radius: 8px;
 
 }
-.cell8 {
+.cell-8 {
     border-right: 8px solid rgba(75, 127, 248, 0.3);
     border-radius: 8px;
 }
@@ -161,7 +171,7 @@ td:hover {
 }
 
   @media screen and (min-width: 1000px) {
-    .container {
+    .container-1 {
         width: 40%;
         height: 70vh;
         margin: 5% auto;
@@ -170,16 +180,16 @@ td:hover {
         font-size: 115px;
         margin: 0 0 5%;
     } 
-    .start-button {
+    .one-player, .two-players, .level {
         font-size: 16px;
         border: 1px solid rgba(75, 127, 248, 0.4);
         padding: 3px 5px;
     }
-    .start-button:hover {
+    .one-player:hover , .two-players:hover, .level:hover {
         font-size: 20px;
         box-shadow: 3px 10px rgba(163, 205, 241, 0.849);
     }
-    .container2 {
+    .container-2 {
         margin: 5% auto;
         width: 40%;
         height: 70vh;
@@ -188,9 +198,6 @@ td:hover {
         color: #3498db;
         font-size: 2rem;
     }
-    /* table {
-        float: left;
-    } */
     table {
         margin: 5% 5% 0 5%;
     }
@@ -216,23 +223,23 @@ td:hover {
         font-size: 60px;
     }
 
-    .cell1:hover, .cell2:hover {
+    .cell-1:hover, .cell-2:hover {
         border-bottom: 10px solid rgb(47, 43, 255);
         border-right: 10px solid rgb(47, 43, 255);
     }
-    .cell3:hover, .cell6:hover{
+    .cell-3:hover, .cell-6:hover{
         border-bottom: 10px solid rgb(47, 43, 255);
     }
-    .cell4:hover, .cell5:hover {
+    .cell-4:hover, .cell-5:hover {
         border-bottom: 10px solid rgb(47, 43, 255);
         border-right: 10px solid rgb(47, 43, 255);
     }
-    .cell7:hover, .cell8:hover{
+    .cell-7:hover, .cell-8:hover{
         border-right: 10px solid rgb(47, 43, 255);
     }
-    .container3 {
+    .container-3 {
         float: right;
-        margin-top: -40%;
+        margin-top: -30%;
     }
     .continue:hover , .play-again:hover , .quit:hover {
         font-size: 16px;
