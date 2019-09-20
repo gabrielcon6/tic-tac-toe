@@ -2,7 +2,7 @@ body {
     font-family: 'Indie Flower', cursive;
     background-color: #f1c40f;
     text-decoration: none;
-    margin: -5px 0 5px 0;
+    margin: -10px 0 10px;
     padding: 0;
     display: flex;
     height: 88vh; 
@@ -18,7 +18,7 @@ body {
     background-color: white;
     display: table;
     border-radius: 30px;
-    /* position: absolute; */
+    /* position: relative; */
 
 }
 .one-player, .two-players, .level {
@@ -172,6 +172,16 @@ td:hover {
 }
 
   @media screen and (min-width: 1000px) {
+    body {
+        font-family: 'Indie Flower', cursive;
+        background-color: #f1c40f;
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        height: 88vh; 
+        height: calc(var(--vh, 1vh) * 88);
+    }
     .container-1 {
         width: 40%;
         height: 70vh;
