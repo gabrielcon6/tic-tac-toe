@@ -1,3 +1,5 @@
+//lateste version
+
 let turnsCount = 0;
 let cellTurn;
 let thisIndex;
