@@ -1,4 +1,18 @@
-X || O (Tic Tac Toe) Rules
+
+
+
+
+ 
+
+
+
+Have fun!
+
+
+# X || O (Tic Tac Toe) Rules
+-- Deployed demo version [GitHub Pages]: https://gabrielcon6.github.io/tic-tac-toe/
+
+This app was created as a  project for the first assignment of my Software Engineering Immersive course at General Assembly Sydney/Australia.
 
 • The board is a matrix of three rows by three columns.
 
@@ -9,8 +23,6 @@ X || O (Tic Tac Toe) Rules
 • The goal is to get three circles or three crosses in a row (either horizontally, vertically or diagonally) while attempting to prevent their opponent from achieving 3 in a row.
 
 • When a player achieves the goal, the scoreboard is updated.
-
- 
 
 Points system:
 
@@ -25,5 +37,20 @@ Points system:
 ·      The first player to get to 10 points in total is the winner of the game.
 
  
+- The tech stack was: 
+    - JavaScript/JQuery;
+    - CSS;
+    - GitHub Pages for deployment;
+    - GitHub for version control.
+***
 
-Have fun!
+# Thank you!
+
+#### My contact is:
+###### Gabriel Conceicao: gabrielcon6cao@gmail.com
+___
+
+#### App Screenshot:
+---
+
+![User view 1](/xiio.gif)
