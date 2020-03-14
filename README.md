@@ -3,6 +3,9 @@
 
 This app was created as a  project for the first assignment of my Software Engineering Immersive course at General Assembly Sydney/Australia.
 
+***
+How it works:
+
 • The board is a matrix of three rows by three columns.
 
 • Two players each choose one symbol to represent them, usually a circle (O) or a cross (X).
