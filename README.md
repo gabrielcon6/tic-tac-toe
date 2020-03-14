@@ -1,14 +1,3 @@
-
-
-
-
- 
-
-
-
-Have fun!
-
-
 # X || O (Tic Tac Toe) Rules
 -- Deployed demo version [GitHub Pages]: https://gabrielcon6.github.io/tic-tac-toe/
 
@@ -36,7 +25,9 @@ Points system:
 
 ·      The first player to get to 10 points in total is the winner of the game.
 
- 
+Features:
+- if you click on the crown, on the top of the table, you are able to toggle the scores, in case you want a cleaner page :)
+
 - The tech stack was: 
     - JavaScript/JQuery;
     - CSS;
